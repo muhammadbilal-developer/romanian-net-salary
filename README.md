@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Romanian Net Salary Calculator
 
-## Getting Started
+Production-ready Next.js 16 app that converts Romanian **gross** monthly salary into **net** take-home pay with CAS, CASS, and income tax breakdown (2026 rules).
 
-First, run the development server:
+## Stack
+
+- Next.js 16 (App Router) + React 19
+- Tailwind CSS v4 (`@theme` tokens in `app/globals.css`)
+- Motion (`motion/react`) for animations
+- Metadata API + JSON-LD for SEO
+
+## Quick start
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## Environment (optional)
 
-To learn more about Next.js, take a look at the following resources:
+Copy `.env.example` to `.env.local`:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `NEXT_PUBLIC_GA_ID` — Google Analytics 4
+- `NEXT_PUBLIC_CLARITY_ID` — Microsoft Clarity
+- `NEXT_PUBLIC_GSC_VERIFICATION` — Google Search Console
+- `NEXT_PUBLIC_BING_VERIFICATION` — Bing Webmaster
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Contact API
 
-## Deploy on Vercel
+`POST /api/contact` validates submissions server-side. Wire email delivery in `app/api/contact/route.ts` (Resend/Formspree TODO).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Calculator logic
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+See `lib/salaryEngine.ts` — 25% CAS, 10% CASS, 10% income tax, personal deduction taper, min-wage relief when gross equals minimum wage.
+
+## OG image
+
+Add `public/og-image.png` (1200×630) for social previews (referenced in root metadata).
