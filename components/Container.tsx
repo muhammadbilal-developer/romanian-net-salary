@@ -1,3 +1,5 @@
+/** Site-wide content width: max 1440px, centered */
+
 export default function Container({
   children,
   className = "",

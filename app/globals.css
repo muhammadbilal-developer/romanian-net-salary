@@ -55,10 +55,6 @@
     @apply mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8;
   }
 
-  .chrome-container {
-    @apply w-full px-4 sm:px-6 lg:px-8;
-  }
-
   .site-chrome {
     @apply w-full;
     background-color: var(--color-chrome);
@@ -66,7 +62,7 @@
   }
 
   .section-pad {
-    @apply py-16 lg:py-20;
+    @apply py-10 lg:py-14;
   }
 
   .bg-section-a {
@@ -160,11 +156,11 @@
   }
 
   .legal-prose p {
-    @apply mb-4 text-text-secondary max-w-[680px];
+    @apply mb-4 w-full text-text-secondary;
   }
 
   .legal-prose ul {
-    @apply mb-4 list-disc pl-6 text-text-secondary max-w-[680px];
+    @apply mb-4 w-full list-disc pl-6 text-text-secondary;
   }
 
   .legal-prose li {

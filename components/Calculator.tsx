@@ -56,7 +56,7 @@ export default function Calculator() {
   return (
     <section
       id="calculator"
-      className="bg-section-b scroll-mt-24 section-divider py-20 lg:py-28"
+      className="bg-section-b scroll-mt-24 section-divider section-pad"
     >
       <Container>
         <header className="mx-auto mb-12 max-w-2xl text-center lg:mb-16">
@@ -70,7 +70,7 @@ export default function Calculator() {
           </p>
         </header>
 
-        <div className="calc-shell mx-auto max-w-6xl">
+        <div className="calc-shell w-full">
           <div className="border-b border-border bg-gradient-to-r from-primary/5 via-white to-secondary/5 px-6 py-5 sm:px-10 sm:py-6">
             <p className="text-sm font-medium text-text-secondary">Live estimate</p>
             <p className="text-lg font-semibold text-text-primary">

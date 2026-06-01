@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 interface ContactBody {
   name?: string;
   email?: string;
+  phone?: string;
   subject?: string;
   message?: string;
 }
@@ -21,7 +22,8 @@ export async function POST(request: Request) {
 
   const name = body.name?.trim();
   const email = body.email?.trim();
-  const subject = body.subject?.trim();
+  const phone = body.phone?.trim();
+  const subject = body.subject?.trim() || "Contact form inquiry";
   const message = body.message?.trim();
 
   if (!name) {
@@ -29,9 +31,6 @@ export async function POST(request: Request) {
   }
   if (!email || !validateEmail(email)) {
     return NextResponse.json({ error: "A valid email is required." }, { status: 400 });
-  }
-  if (!subject) {
-    return NextResponse.json({ error: "Subject is required." }, { status: 400 });
   }
   if (!message || message.length < 20) {
     return NextResponse.json(
@@ -41,7 +40,13 @@ export async function POST(request: Request) {
   }
 
   // TODO: Wire email provider (Resend, Formspree, etc.)
-  console.info("[contact]", { name, email, subject, messageLength: message.length });
+  console.info("[contact]", {
+    name,
+    email,
+    phone: phone || undefined,
+    subject,
+    messageLength: message.length,
+  });
 
   return NextResponse.json({ ok: true });
 }

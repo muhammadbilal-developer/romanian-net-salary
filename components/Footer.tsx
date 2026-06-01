@@ -1,15 +1,49 @@
 import Link from "next/link";
-import { FiTwitter, FiLinkedin, FiGithub } from "react-icons/fi";
+import { FaGithub, FaInstagram, FaLinkedin, FaXTwitter, FaYoutube } from "react-icons/fa6";
 import { LogoHorizontal } from "./Logo";
-import ChromeContainer from "./ChromeContainer";
+import Container from "./Container";
 import { FOOTER_LEGAL, FOOTER_NAV, SITE } from "@/lib/constants";
+
+const socialLinks = [
+  {
+    label: "X (Twitter)",
+    href: "#",
+    Icon: FaXTwitter,
+    className: "bg-black text-white hover:bg-slate-800",
+  },
+  {
+    label: "LinkedIn",
+    href: "#",
+    Icon: FaLinkedin,
+    className: "bg-[#0A66C2] text-white hover:bg-[#004182]",
+  },
+  {
+    label: "GitHub",
+    href: "#",
+    Icon: FaGithub,
+    className: "bg-white text-[#24292f] hover:bg-slate-100",
+  },
+  {
+    label: "Instagram",
+    href: "#",
+    Icon: FaInstagram,
+    className:
+      "bg-gradient-to-br from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] text-white hover:opacity-90",
+  },
+  {
+    label: "YouTube",
+    href: "#",
+    Icon: FaYoutube,
+    className: "bg-[#FF0000] text-white hover:bg-[#cc0000]",
+  },
+];
 
 export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
     <footer className="site-chrome mt-auto w-full text-slate-300">
-      <ChromeContainer className="grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-4">
+      <Container className="grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-4">
         <div>
           <LogoHorizontal variant="dark" className="mb-4 h-11 w-auto lg:h-12" />
           <p className="max-w-xs text-sm leading-relaxed text-slate-400">
@@ -57,27 +91,28 @@ export default function Footer() {
           <h2 className="mb-4 text-sm font-semibold uppercase tracking-wide text-white">
             Connect
           </h2>
-          <div className="flex gap-3" aria-label="Social links (placeholder)">
-            {[FiTwitter, FiLinkedin, FiGithub].map((Icon, i) => (
-              <span
-                key={i}
-                className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/10 text-slate-400"
-                aria-hidden="true"
+          <div className="flex flex-wrap gap-3" aria-label="Social media">
+            {socialLinks.map(({ label, href, Icon, className }) => (
+              <a
+                key={label}
+                href={href}
+                aria-label={label}
+                className={`flex h-10 w-10 items-center justify-center rounded-lg transition-colors ${className}`}
               >
-                <Icon size={18} />
-              </span>
+                <Icon size={18} aria-hidden="true" />
+              </a>
             ))}
           </div>
           <p className="mt-4 text-sm text-slate-500">{SITE.email}</p>
         </div>
-      </ChromeContainer>
+      </Container>
 
       <div className="w-full border-t border-white/10">
-        <ChromeContainer>
+        <Container>
           <p className="py-6 text-center text-sm text-slate-500">
             © {year} {SITE.name}. All rights reserved. Estimates only — not tax advice.
           </p>
-        </ChromeContainer>
+        </Container>
       </div>
     </footer>
   );

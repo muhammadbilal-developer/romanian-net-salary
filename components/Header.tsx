@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
 import { FiMenu, FiX } from "react-icons/fi";
 import { LogoHorizontal } from "./Logo";
-import ChromeContainer from "./ChromeContainer";
+import Container from "./Container";
 import { NAV_LINKS } from "@/lib/constants";
 
 const calculatorHref = (isHome: boolean) => (isHome ? "#calculator" : "/#calculator");
@@ -20,8 +20,8 @@ export default function Header() {
 
   return (
     <header className="site-chrome sticky top-0 z-50 w-full border-b border-white/10 shadow-sm">
-      <ChromeContainer>
-        <div className="flex min-h-[72px] w-full items-center justify-between gap-4 py-4 lg:min-h-[80px] lg:py-5">
+      <Container>
+        <div className="flex min-h-[72px] items-center justify-between gap-4 py-4 lg:min-h-[80px] lg:py-5">
           <Link href="/" className="shrink-0" aria-label="Home">
             <LogoHorizontal variant="dark" className="h-11 w-auto lg:h-12" />
           </Link>
@@ -75,7 +75,7 @@ export default function Header() {
             </button>
           </div>
         </div>
-      </ChromeContainer>
+      </Container>
 
       <AnimatePresence>
         {open && (
@@ -88,7 +88,7 @@ export default function Header() {
             className="site-chrome w-full overflow-hidden border-t border-white/10 md:hidden"
             aria-label="Mobile navigation"
           >
-            <ChromeContainer className="flex flex-col gap-1 py-4">
+            <Container className="flex flex-col gap-1 py-4">
               <a
                 href={calculatorHref(isHome)}
                 onClick={closeMenu}
@@ -117,7 +117,7 @@ export default function Header() {
                   </a>
                 )
               )}
-            </ChromeContainer>
+            </Container>
           </motion.nav>
         )}
       </AnimatePresence>

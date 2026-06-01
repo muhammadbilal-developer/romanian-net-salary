@@ -13,30 +13,10 @@ export const SITE_IMAGES = {
     width: 1200,
     height: 800,
   },
-  faqGallery: [
-    {
-      src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
-      alt: "Finance analytics dashboard on a computer screen",
-      width: 800,
-      height: 533,
-    },
-    {
-      src: "https://images.unsplash.com/photo-1573496359142-b8d879ccff86?auto=format&fit=crop&w=800&q=80",
-      alt: "Professional reviewing documents at a desk",
-      width: 800,
-      height: 533,
-    },
-    {
-      src: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80",
-      alt: "Business planning and salary paperwork on a desk",
-      width: 800,
-      height: 533,
-    },
-    {
-      src: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=800&q=80",
-      alt: "Team collaborating with laptops in an office",
-      width: 800,
-      height: 533,
-    },
-  ],
+  faq: {
+    src: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=85",
+    alt: "Business professional reviewing salary and tax documents",
+    width: 900,
+    height: 600,
+  },
 } as const;

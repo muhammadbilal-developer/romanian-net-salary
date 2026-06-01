@@ -16,7 +16,7 @@ export default function LegalPage({
   const url = `${SITE.url}${path}`;
 
   return (
-    <article className="section-pad bg-section-b">
+    <article className="bg-white section-pad min-h-[calc(100svh-var(--header-height))]">
       <JsonLd
         data={breadcrumbSchema([
           { name: "Home", url: SITE.url },
@@ -24,7 +24,7 @@ export default function LegalPage({
         ])}
       />
       <Container>
-        <div className="legal-prose mx-auto max-w-3xl">
+        <div className="legal-prose w-full">
           <nav className="mb-8 text-sm text-text-secondary" aria-label="Breadcrumb">
             <Link href="/" className="hover:text-primary">
               Home
