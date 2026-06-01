@@ -33,13 +33,15 @@
 }
 
 @layer base {
+  /* Native wheel scroll — smooth only via scrollIntoView on anchor clicks */
   html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
   }
 
   body {
     @apply font-sans text-text-primary antialiased;
     line-height: 1.6;
+    overflow-x: clip;
   }
 
   h1,
@@ -87,12 +89,33 @@
   }
 
   .glass-card-hover {
-    @apply transition-all duration-300 ease-out;
+    @apply transition-[transform,box-shadow] duration-300 ease-out;
+    transform: translateZ(0);
   }
 
   .glass-card-hover:hover {
-    transform: translateY(-5px);
+    transform: translateY(-5px) translateZ(0);
     box-shadow: var(--shadow-glass-hover);
+  }
+
+  .motion-reveal {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  .accordion-panel {
+    display: grid;
+    transition: grid-template-rows 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    grid-template-rows: 0fr;
+  }
+
+  .accordion-panel[data-open="true"] {
+    grid-template-rows: 1fr;
+  }
+
+  .accordion-panel > .accordion-panel-inner {
+    min-height: 0;
+    overflow: hidden;
   }
 
   .btn-primary {

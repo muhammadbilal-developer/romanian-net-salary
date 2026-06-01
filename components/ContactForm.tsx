@@ -59,8 +59,9 @@ export default function ContactForm({ variant = "default" }: ContactFormProps) {
   if (success) {
     return (
       <motion.div
-        initial={{ opacity: 0, scale: 0.98 }}
-        animate={{ opacity: 1, scale: 1 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.35 }}
         className={
           isCard
             ? "flex flex-col items-center rounded-xl bg-white/95 p-8 text-center"

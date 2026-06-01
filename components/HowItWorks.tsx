@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import Container from "./Container";
+import { fadeIn, fadeInUp } from "@/lib/motion";
 import {
   Step1Illustration,
   Step2Illustration,
@@ -38,11 +39,8 @@ export default function HowItWorks() {
     <section id="how-it-works" className="bg-section-a section-pad section-divider scroll-mt-24">
       <Container>
         <motion.header
-          className="mx-auto max-w-2xl text-center"
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.45 }}
+          className="motion-reveal mx-auto max-w-2xl text-center"
+          {...fadeInUp}
         >
           <div className="section-accent-bar" aria-hidden="true" />
           <h2 className="text-3xl font-bold text-text-primary sm:text-4xl">How it works</h2>
@@ -59,11 +57,9 @@ export default function HowItWorks() {
             {steps.map((step, i) => (
               <motion.li
                 key={step.title}
-                className="relative flex flex-col items-center text-center"
-                initial={{ opacity: 0, y: 28 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.12, ease: "easeOut" }}
+                className="motion-reveal relative flex flex-col items-center text-center"
+                {...fadeInUp}
+                transition={{ ...fadeInUp.transition, delay: i * 0.06 }}
               >
                 <div className="relative mb-6 w-full max-w-[220px] rounded-2xl bg-white p-4 shadow-lg ring-1 ring-border sm:max-w-none sm:p-5">
                   <span className="absolute -right-2 -top-2 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-xs font-bold text-white shadow-md">
@@ -80,13 +76,7 @@ export default function HowItWorks() {
           </ol>
         </div>
 
-        <motion.p
-          className="mx-auto mt-14 max-w-xl text-center text-sm text-text-secondary"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-        >
+        <motion.p className="motion-reveal mx-auto mt-14 max-w-xl text-center text-sm text-text-secondary" {...fadeIn}>
           Ready to try it?{" "}
           <a href="#calculator" className="font-semibold text-primary hover:underline">
             Jump to the calculator

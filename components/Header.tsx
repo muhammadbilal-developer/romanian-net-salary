@@ -3,11 +3,11 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "motion/react";
 import { FiMenu, FiX } from "react-icons/fi";
 import { LogoHorizontal } from "./Logo";
 import Container from "./Container";
 import { NAV_LINKS } from "@/lib/constants";
+import { handleHashClick } from "@/lib/smooth-scroll";
 
 const calculatorHref = (isHome: boolean) => (isHome ? "#calculator" : "/#calculator");
 
@@ -17,6 +17,10 @@ export default function Header() {
   const isHome = pathname === "/";
 
   const closeMenu = () => setOpen(false);
+
+  const onHashNav = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (isHome) handleHashClick(e, href, closeMenu);
+  };
 
   return (
     <header className="site-chrome sticky top-0 z-50 w-full border-b border-white/10 shadow-sm">
@@ -47,6 +51,7 @@ export default function Header() {
                 <a
                   key={link.href}
                   href={isHome ? link.href : `/${link.href}`}
+                  onClick={(e) => onHashNav(e, link.href)}
                   className="rounded-lg px-3 py-2 text-base font-medium text-white/80 transition-colors hover:text-white"
                 >
                   {link.label}
@@ -58,6 +63,7 @@ export default function Header() {
           <div className="flex items-center gap-3">
             <a
               href={calculatorHref(isHome)}
+              onClick={(e) => isHome && handleHashClick(e, "#calculator")}
               className="btn-primary hidden px-5 py-2.5 text-sm md:inline-flex"
             >
               Calculate net salary
@@ -77,50 +83,49 @@ export default function Header() {
         </div>
       </Container>
 
-      <AnimatePresence>
-        {open && (
-          <motion.nav
-            id="mobile-menu"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
-            className="site-chrome w-full overflow-hidden border-t border-white/10 md:hidden"
-            aria-label="Mobile navigation"
-          >
-            <Container className="flex flex-col gap-1 py-4">
-              <a
-                href={calculatorHref(isHome)}
-                onClick={closeMenu}
-                className="btn-primary mb-2 w-full justify-center py-3 text-base"
-              >
-                Calculate net salary
-              </a>
-              {NAV_LINKS.map((link) =>
-                "isRoute" in link && link.isRoute ? (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    onClick={closeMenu}
-                    className="rounded-lg px-3 py-3 text-base font-medium text-white hover:bg-white/10"
-                  >
-                    {link.label}
-                  </Link>
-                ) : (
-                  <a
-                    key={link.href}
-                    href={isHome ? link.href : `/${link.href}`}
-                    onClick={closeMenu}
-                    className="rounded-lg px-3 py-3 text-base font-medium text-white hover:bg-white/10"
-                  >
-                    {link.label}
-                  </a>
-                )
-              )}
-            </Container>
-          </motion.nav>
-        )}
-      </AnimatePresence>
+      <div
+        id="mobile-menu"
+        className={`site-chrome grid w-full border-t border-white/10 transition-[grid-template-rows] duration-300 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] md:hidden ${
+          open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+        }`}
+        aria-hidden={!open}
+      >
+        <nav className="overflow-hidden" aria-label="Mobile navigation">
+          <Container className="flex flex-col gap-1 py-4">
+            <a
+              href={calculatorHref(isHome)}
+              onClick={(e) => {
+                if (isHome) handleHashClick(e, "#calculator", closeMenu);
+                else closeMenu();
+              }}
+              className="btn-primary mb-2 w-full justify-center py-3 text-base"
+            >
+              Calculate net salary
+            </a>
+            {NAV_LINKS.map((link) =>
+              "isRoute" in link && link.isRoute ? (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={closeMenu}
+                  className="rounded-lg px-3 py-3 text-base font-medium text-white hover:bg-white/10"
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <a
+                  key={link.href}
+                  href={isHome ? link.href : `/${link.href}`}
+                  onClick={(e) => onHashNav(e, link.href)}
+                  className="rounded-lg px-3 py-3 text-base font-medium text-white hover:bg-white/10"
+                >
+                  {link.label}
+                </a>
+              )
+            )}
+          </Container>
+        </nav>
+      </div>
     </header>
   );
 }

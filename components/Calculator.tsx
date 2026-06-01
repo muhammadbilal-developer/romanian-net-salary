@@ -234,20 +234,20 @@ export default function Calculator() {
                     className="mt-2 block text-5xl font-bold tracking-tight text-text-primary sm:text-6xl"
                   />
 
-                  <div className="mt-8 grid grid-cols-2 gap-4">
-                    <div className="rounded-2xl border border-border bg-white p-5 shadow-sm">
-                      <p className="text-xs font-medium uppercase tracking-wide text-text-secondary">
+                  <div className="mt-6 grid grid-cols-1 gap-3 sm:mt-8 sm:grid-cols-2 sm:gap-4">
+                    <div className="flex items-center justify-between gap-4 rounded-2xl border border-border bg-white px-4 py-4 shadow-sm sm:flex-col sm:items-stretch sm:justify-start sm:p-5">
+                      <p className="max-w-[9rem] text-[11px] font-semibold uppercase leading-snug tracking-wide text-text-secondary sm:max-w-none sm:text-xs">
                         Total tax deducted
                       </p>
-                      <p className="mt-1 text-2xl font-bold text-text-primary">
+                      <p className="shrink-0 text-right text-xl font-bold tabular-nums text-text-primary sm:mt-1 sm:text-left sm:text-2xl">
                         {formatRON(result.totalTax)}
                       </p>
                     </div>
-                    <div className="rounded-2xl border border-border bg-white p-5 shadow-sm">
-                      <p className="text-xs font-medium uppercase tracking-wide text-text-secondary">
+                    <div className="flex items-center justify-between gap-4 rounded-2xl border border-border bg-white px-4 py-4 shadow-sm sm:flex-col sm:items-stretch sm:justify-start sm:p-5">
+                      <p className="max-w-[9rem] text-[11px] font-semibold uppercase leading-snug tracking-wide text-text-secondary sm:max-w-none sm:text-xs">
                         Effective tax rate
                       </p>
-                      <p className="mt-1 text-2xl font-bold text-primary">
+                      <p className="shrink-0 text-right text-xl font-bold tabular-nums text-primary sm:mt-1 sm:text-left sm:text-2xl">
                         {result.effectiveTaxRate}%
                       </p>
                     </div>

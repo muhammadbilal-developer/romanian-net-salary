@@ -10,6 +10,7 @@ import {
   FiCheckCircle,
 } from "react-icons/fi";
 import Container from "./Container";
+import { fadeInUp } from "@/lib/motion";
 
 const topics = [
   {
@@ -67,10 +68,8 @@ export default function InfoCards() {
 
         {/* Summary strip */}
         <motion.div
-          className="mt-10 flex flex-wrap items-center justify-center gap-4 rounded-2xl border border-border bg-white px-6 py-5 shadow-sm"
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          className="motion-reveal mt-10 flex flex-wrap items-center justify-center gap-4 rounded-2xl border border-border bg-white px-6 py-5 shadow-sm"
+          {...fadeInUp}
         >
           {[
             { label: "CAS", value: "25%", color: "text-primary" },
@@ -94,11 +93,8 @@ export default function InfoCards() {
         <div className="mt-8 grid gap-6 lg:grid-cols-2 lg:gap-8">
           {/* Featured overview card */}
           <motion.article
-            className="relative overflow-hidden rounded-3xl border border-border bg-white p-8 shadow-lg lg:col-span-2 lg:p-10"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.45 }}
+            className="motion-reveal relative overflow-hidden rounded-3xl border border-border bg-white p-8 shadow-lg lg:col-span-2 lg:p-10"
+            {...fadeInUp}
           >
             <div
               className={`pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-gradient-to-br ${overview.accent} opacity-10 blur-2xl`}
@@ -139,11 +135,9 @@ export default function InfoCards() {
           {details.map((card, i) => (
             <motion.article
               key={card.id}
-              className="group relative flex flex-col overflow-hidden rounded-3xl border border-border bg-white p-8 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.45, delay: 0.08 * (i + 1) }}
+              className="motion-reveal group relative flex flex-col overflow-hidden rounded-3xl border border-border bg-white p-8 shadow-lg transition-[transform,box-shadow] duration-300 ease-out hover:-translate-y-1 hover:shadow-xl"
+              {...fadeInUp}
+              transition={{ ...fadeInUp.transition, delay: 0.06 * (i + 1) }}
             >
               <div
                 className={`absolute left-0 top-0 h-1.5 w-full bg-gradient-to-r ${card.accent}`}

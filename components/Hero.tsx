@@ -5,6 +5,7 @@ import { motion } from "motion/react";
 import { FiArrowRight, FiCheckCircle, FiTrendingUp } from "react-icons/fi";
 import Container from "./Container";
 import { SITE_IMAGES } from "@/lib/site-images";
+import { EASE_SMOOTH, TRANSITION_SMOOTH } from "@/lib/motion";
 import {
   MiniChartIllustration,
   MiniPayslipIllustration,
@@ -42,9 +43,10 @@ export default function Hero() {
       <Container className="lg:min-h-[calc(100svh-var(--header-height)-7rem)]">
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-12 lg:min-h-[calc(100svh-var(--header-height)-7rem)]">
           <motion.div
-            initial={{ opacity: 0, y: 28 }}
+            className="motion-reveal"
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, ease: "easeOut" }}
+            transition={TRANSITION_SMOOTH}
           >
             <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-white/90 px-4 py-1.5 text-sm font-medium text-primary shadow-sm">
               <FiTrendingUp className="shrink-0" aria-hidden="true" />
@@ -120,10 +122,10 @@ export default function Hero() {
           </motion.div>
 
           <motion.div
-            className="relative min-h-[22rem] overflow-hidden rounded-2xl border border-border shadow-xl sm:min-h-[26rem] lg:min-h-[32rem]"
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+            className="motion-reveal relative min-h-[22rem] overflow-hidden rounded-2xl border border-border shadow-xl sm:min-h-[26rem] lg:min-h-[32rem]"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ ...TRANSITION_SMOOTH, delay: 0.08 }}
           >
             <Image
               src={heroImage.src}
@@ -136,11 +138,11 @@ export default function Hero() {
 
             <motion.div
               className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6"
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+              transition={{ duration: 0.4, delay: 0.2, ease: EASE_SMOOTH }}
             >
-              <div className="rounded-2xl border border-border bg-white/95 p-5 shadow-2xl backdrop-blur-sm">
+              <div className="rounded-2xl border border-border bg-white/95 p-5 shadow-2xl">
                 <p className="text-xs font-semibold uppercase tracking-wide text-text-secondary">
                   Example estimate
                 </p>

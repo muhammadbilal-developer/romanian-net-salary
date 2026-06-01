@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import MotionProvider from "@/components/MotionProvider";
 import Analytics from "@/components/Analytics";
 import JsonLd from "@/components/JsonLd";
 import { organizationSchema } from "@/lib/schema";
@@ -57,13 +58,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} h-full`} data-scroll-behavior="smooth">
+    <html lang="en" className={`${inter.variable} h-full`}>
       <body className="flex min-h-full flex-col font-sans antialiased">
-        <JsonLd data={organizationSchema()} />
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <Analytics />
+        <MotionProvider>
+          <JsonLd data={organizationSchema()} />
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+          <Analytics />
+        </MotionProvider>
       </body>
     </html>
   );
